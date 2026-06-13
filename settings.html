@@ -22,6 +22,7 @@
                 <button class="logout-btn" id="logoutBtn" title="Logout"><span>🚪</span></button>
             </div>
         </nav>
+
         <div class="dashboard-layout">
             <aside class="sidebar">
                 <nav class="sidebar-nav">
@@ -35,9 +36,11 @@
                     <a href="settings.html" class="nav-link active"><span class="nav-icon">⚙️</span><span class="nav-label">Settings</span></a>
                 </nav>
             </aside>
+
             <main class="main-content">
                 <div class="page-header">
                     <h1 class="page-title">Settings</h1>
+                    <p class="page-subtitle">Manage your profile, clinicians, and system configuration</p>
                 </div>
 
                 <div class="settings-container">
@@ -45,48 +48,51 @@
                     <!-- My Profile -->
                     <section class="settings-section">
                         <div class="section-header"><h2>👤 My Profile</h2></div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" id="myName" class="form-control" readonly>
+                        <div class="settings-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" id="myName" class="form-control" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="text" id="myEmail" class="form-control" readonly>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="text" id="myEmail" class="form-control" readonly>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Role</label>
-                                <input type="text" id="myRole" class="form-control" readonly>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Role</label>
+                                    <input type="text" id="myRole" class="form-control" readonly>
+                                </div>
                             </div>
                         </div>
                     </section>
 
                     <!-- Clinician Management — Admin only -->
                     <section class="settings-section" id="adminSection" style="display:none">
-                        <div class="section-header">
+                        <div class="section-header" style="display:flex;justify-content:space-between;align-items:center">
                             <h2>👩‍⚕️ Clinician Accounts</h2>
                             <button class="action-btn" id="btnAddClinician">➕ Add Clinician</button>
                         </div>
-                        <div id="addClinicianForm" style="display:none">
+
+                        <div id="addClinicianForm" style="display:none" class="settings-form">
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="newFirstName">First Name <span class="required">*</span></label>
+                                    <label for="newFirstName">First Name *</label>
                                     <input type="text" id="newFirstName" class="form-control" placeholder="First name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="newLastName">Last Name <span class="required">*</span></label>
+                                    <label for="newLastName">Last Name *</label>
                                     <input type="text" id="newLastName" class="form-control" placeholder="Last name">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="newEmail">Email <span class="required">*</span></label>
+                                    <label for="newEmail">Email *</label>
                                     <input type="email" id="newEmail" class="form-control" placeholder="clinician@hospital.com">
                                 </div>
                                 <div class="form-group">
-                                    <label for="newPassword">Password <span class="required">*</span></label>
+                                    <label for="newPassword">Password *</label>
                                     <input type="password" id="newPassword" class="form-control" placeholder="Min 8 characters">
                                 </div>
                             </div>
@@ -99,11 +105,12 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-buttons" style="margin-top:1rem">
-                                <button type="button" class="btn-secondary" id="btnCancelAdd">Cancel</button>
-                                <button type="button" class="btn-primary" id="btnCreateClinician">✓ Create Account</button>
+                            <div style="display:flex;gap:1rem;margin-top:1rem">
+                                <button type="button" class="btn-save" style="background:#6c757d" id="btnCancelAdd">Cancel</button>
+                                <button type="button" class="btn-save" id="btnCreateClinician">✓ Create Account</button>
                             </div>
                         </div>
+
                         <div class="table-wrapper" style="margin-top:1rem">
                             <table class="patient-table">
                                 <thead>
@@ -125,7 +132,7 @@
                         <form class="settings-form" id="hospitalForm">
                             <div class="form-group">
                                 <label for="hospitalNameInput">Hospital Name</label>
-                                <input type="text" id="hospitalNameInput" class="form-control" placeholder="e.g., ISTH Irrua" value="ISTH Irrua">
+                                <input type="text" id="hospitalName" class="form-control" placeholder="e.g., ISTH Irrua" value="ISTH Irrua">
                             </div>
                             <div class="form-group">
                                 <label for="hospitalAddress">Hospital Address</label>
@@ -152,7 +159,7 @@
                             <div class="form-group">
                                 <label for="smsSenderId">SMS Sender ID</label>
                                 <input type="text" id="smsSenderId" class="form-control" placeholder="e.g., CarePulse" value="CarePulse">
-                                <p class="form-hint">Max 11 characters for most carriers</p>
+                                <p class="form-hint">The name shown as sender (max 11 characters)</p>
                             </div>
                             <div class="form-group">
                                 <label for="defaultLanguage">Default Language</label>
@@ -160,6 +167,11 @@
                                     <option value="English" selected>English</option>
                                     <option value="Pidgin English">Pidgin English</option>
                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <label>SMS Provider</label>
+                                <input type="text" class="form-control" value="Africa's Talking" disabled>
+                                <p class="form-hint">Managed by system administrator</p>
                             </div>
                             <button type="button" class="btn-save" onclick="saveSmsSettings()">Save Changes</button>
                         </form>
@@ -169,6 +181,24 @@
                     <section class="settings-section">
                         <div class="section-header"><h2>🔔 Reminder Defaults</h2></div>
                         <form class="settings-form" id="remindersForm">
+                            <div class="form-group-toggle">
+                                <div class="toggle-row">
+                                    <div><label for="medicationToggle">Medication Reminders</label><p class="form-hint">Send SMS reminders for medication doses</p></div>
+                                    <label class="toggle-switch"><input type="checkbox" id="medicationToggle" checked><span class="slider"></span></label>
+                                </div>
+                            </div>
+                            <div class="form-group-toggle">
+                                <div class="toggle-row">
+                                    <div><label for="appointmentToggle">Appointment Reminders</label><p class="form-hint">Send SMS reminders before appointments</p></div>
+                                    <label class="toggle-switch"><input type="checkbox" id="appointmentToggle" checked><span class="slider"></span></label>
+                                </div>
+                            </div>
+                            <div class="form-group-toggle">
+                                <div class="toggle-row">
+                                    <div><label for="healthTipToggle">Health Tips</label><p class="form-hint">Send weekly health and wellness tips</p></div>
+                                    <label class="toggle-switch"><input type="checkbox" id="healthTipToggle" checked><span class="slider"></span></label>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label for="appointmentLeadTime">Appointment Lead Time</label>
                                 <select id="appointmentLeadTime" class="form-control">
@@ -192,15 +222,52 @@
                                     <option value="Friendly" selected>Friendly</option>
                                     <option value="Simple">Simple</option>
                                 </select>
+                                <p class="form-hint">How AI generates reminder messages</p>
+                            </div>
+                            <div class="form-group-toggle">
+                                <div class="toggle-row">
+                                    <div><label for="includePatientName">Include Patient Name</label><p class="form-hint">Personalize messages with patient's name</p></div>
+                                    <label class="toggle-switch"><input type="checkbox" id="includePatientName" checked><span class="slider"></span></label>
+                                </div>
+                            </div>
+                            <div class="form-group-toggle">
+                                <div class="toggle-row">
+                                    <div><label for="includeMedicationName">Include Medication Name</label><p class="form-hint">Show drug names in reminder messages</p></div>
+                                    <label class="toggle-switch"><input type="checkbox" id="includeMedicationName" checked><span class="slider"></span></label>
+                                </div>
                             </div>
                             <button type="button" class="btn-save" onclick="saveGeminiSettings()">Save Changes</button>
                         </form>
                     </section>
 
+                    <!-- Danger Zone -->
+                    <section class="settings-section danger-zone">
+                        <div class="section-header"><h2 style="color:#dc3545">⚠️ Danger Zone</h2></div>
+                        <div class="danger-content">
+                            <p>Reset all settings to factory defaults. This action cannot be undone.</p>
+                            <button type="button" class="btn-danger" onclick="showResetConfirmation()">Reset All Settings</button>
+                        </div>
+                    </section>
                 </div>
             </main>
         </div>
     </div>
+
+    <!-- Reset Confirmation Modal -->
+    <div id="confirmationModal" class="modal hidden">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header"><h3>Reset All Settings?</h3></div>
+            <div class="modal-body">
+                <p>This will reset all settings to factory defaults. This action <strong>cannot be undone</strong>.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+                <button class="btn-confirm-danger" onclick="confirmReset()">Yes, Reset Everything</button>
+            </div>
+        </div>
+    </div>
+
     <div class="toast" id="toast"><span id="toastMessage"></span></div>
     <script src="mockData.js"></script>
     <script src="settings.js"></script>
