@@ -11,7 +11,7 @@ async function loadStats() {
     if (res) {
       const data = await res.json();
       document.getElementById('statTotalPatients').textContent = data.totalPatients ?? '—';
-      document.getElementById('statAdherence').textContent = data.adherence.rate !== undefined ? data.adherence.rate + '%' : '—';
+      document.getElementById('statAdherence').textContent = (data.adherence.rate !== null && data.adherence.rate !== undefined) ? data.adherence.rate + '%' : '—';
       document.getElementById('statAppointments').textContent = data.appointments ?? '—';
       document.getElementById('statMessages').textContent = data.messages ?? '—';
       populateAdherenceBar(data.adherence.green, data.adherence.amber, data.adherence.red);
